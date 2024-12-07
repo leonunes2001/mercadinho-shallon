@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja Online - Produtos</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link para o arquivo de estilos -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const carrinho = document.querySelector("#link-carrinho");
+            let totalItensCarrinho = 0;
+
+            const atualizarCarrinho = () => {
+                carrinho.textContent = `Carrinho (${totalItensCarrinho})`;
+            };
+
+            document.querySelectorAll(".btn-add-carrinho").forEach((botao) => {
+                botao.addEventListener("click", () => {
+                    totalItensCarrinho++;
+                    atualizarCarrinho();
+                    
+                });
+            });
+        });
+        document.addEventListener("DOMContentLoaded", () => {
+        const carrinho = document.querySelector("#link-carrinho");
+        const produtosCarrinho = [];
+
+        const atualizarCarrinho = () => {
+            carrinho.textContent = `Carrinho (${produtosCarrinho.length})`;
+        };
+
+        document.querySelectorAll(".btn-add-carrinho").forEach((botao) => {
+            botao.addEventListener("click", (event) => {
+                const produto = event.target.parentElement.querySelector("p").textContent;
+                produtosCarrinho.push(produto);
+                atualizarCarrinho();
+               
+            });
+        });
+
+        carrinho.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            if (produtosCarrinho.length === 0) {
+                alert("O carrinho está vazio!");
+            } else {
+                const produtos = encodeURIComponent(produtosCarrinho.join("\n"));
+                window.location.href = `checkout.html?produtos=${produtos}`;
+            }
+        });
+    });
+    </script>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">
+            <h1>Bem-vindo à nossa Loja! | Mercadinho Shallon com os melhores preços!</h1>
+        </div>
+    </header>
+
+    <!-- Pesquisa -->
+    <section class="pesquisa">
+        <input type="text" placeholder="Pesquisa por produtos ou marcas">
+        <button>Buscar</button>
+    </section>
+
+    <!-- Endereço de entrega -->
+    <section class="entrega">
+        <p>Entregue pela Loja - Mercadinho Shallon</p>
+        <p>para o CEP: 57150-000</p>
+    </section>
+
+    <!-- Navbar de Categorias -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#cervejas">Cervejas</a></li>
+            <li><a href="#biscoitos">Biscoitos</a></li>
+            <li><a href="#limpeza">Limpeza</a></li>
+            <li><a href="#chocolates">Chocolates</a></li>
+            <li><a href="#higiene">Higiene</a></li>
+            <li><a href="#confeitaria">Confeitaria</a></li>
+            <li><a href="#enlatados">Enlatados</a></li>
+            <li><a href="#leites">Leites</a></li>
+            <li><a href="#doces">Doces</a></li>
+            <li><a href="#carrinho" id="link-carrinho">Carrinho (0)</a></li>
+        </ul>
+    </nav>
+
+    <!-- Produtos por Categoria -->
+    <section id="cervejas" class="produtos">
+        <h2>Cervejas</h2>
+        <div class="produto">
+            <img src="imagens/heineken.jpeg" alt="Cerveja Heineken" width="100">
+            <p>Cerveja Heineken Long Neck - R$ 6,49</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/amstel.jpeg" alt="Cerveja Amstel" width="100">
+            <p>Cerveja Amstel Lata - R$ 4,09</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Skol.jpeg" alt="Cerveja Skol" width="100">
+            <p>Cerveja Skol Lata - R$ 3,49</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Budweise.jpeg" alt="Cerveja Budweiser" width="100">
+            <p>Cerveja Budweiser - R$ 5,49</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+    </section>
+
+    <section id="biscoitos" class="produtos">
+        <h2>Biscoitos</h2>
+        <div class="produto">
+            <img src="imagens/trakinas.jpeg" alt="Biscoito Trakinas Chocolate" width="100">
+            <p>Biscoito Trakinas Chocolate - R$ 2,99</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Biscoito Cream Cracker.jpeg" alt="Biscoito Cream Cracker" width="100">
+            <p>Biscoito Cream Cracker - R$ 3,49</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Biscoito Passatempo Leite.jpeg" alt="Biscoito Passatempo Leite" width="100">
+            <p>Biscoito Passatempo Leite - R$ 3,99</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Biscoito Oreo.jpeg" alt="Biscoito Oreo" width="100">
+            <p>Biscoito Oreo - R$ 4,49</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+    </section>
+
+    <section id="limpeza" class="produtos">
+        <h2>Limpeza</h2>
+        <div class="produto">
+            <img src="imagens/Sabão em Pó Omo.jpeg" alt="Sabão em Pó Omo" width="100">
+            <p>Sabão em Pó Omo - R$ 12,99</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Água Sanitária Qboa.jpeg" alt="Água Sanitária Qboa" width="100">
+            <p>Água Sanitária Qboa - R$ 3,49</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Esponja Multiuso Scotch-Brite.jpeg" alt="Esponja Multiuso Scotch-Brite" width="100">
+            <p>Esponja Multiuso Scotch-Brite - R$ 2,99</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Desinfetante Pinho Sol.jpeg" alt="Desinfetante Pinho Sol" width="100">
+            <p>Desinfetante Pinho Sol - R$ 5,99</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+    </section>
+
+    <section id="chocolates" class="produtos">
+        <h2>Chocolates</h2>
+        <div class="produto">
+            <img src="imagens/Barra de Chocolate Lacta.jpeg" alt="Barra de Chocolate Lacta" width="100">
+            <p>Barra de Chocolate Lacta - R$ 5,49</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Chocolate Kinder Bueno.jpeg" alt="Chocolate Kinder Bueno" width="100">
+            <p>Chocolate Kinder Bueno - R$ 6,49</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Chocolate Talento.jpeg" alt="Chocolate Talento Castanha" width="100">
+            <p>Chocolate Talento Castanha - R$ 4,99</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Bombom Ferrero Rocher.jpeg" alt="Bombom Ferrero Rocher " width="100">
+            <p>Bombom Ferrero Rocher - R$ 12,99</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+    </section>
+
+    <section id="higiene" class="produtos">
+        <h2>Higiene</h2>
+        <div class="produto">
+            <img src="imagens/Pasta de Dente Colgate.jpeg" alt="Pasta de Dente Colgate" width="100">
+            <p>Pasta de Dente Colgate - R$ 3,49</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Sabonete Dove.jpeg" alt="Sabonete Dove" width="100">
+            <p>Sabonete Dove - R$ 4,99</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Shampoo Pantene.jpeg" alt="Shampoo Pantene" width="100">
+            <p>Shampoo Pantene - R$ 9,99</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Desodorante Rexona.jpeg" alt="Desodorante Rexona" width="100">
+            <p>Desodorante Rexona - R$ 7,49</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+    </section>
+
+    <section id="confeitaria" class="produtos">
+        <h2>Confeitaria</h2>
+        <div class="produto">
+            <img src="imagens/Leite Condensado Moça.jpeg" alt="Leite Condensado Moça " width="100">
+            <p>Leite Condensado Moça - R$ 4,99</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Granulado Mil Cores.jpeg" alt="Granulado Mil Cores" width="100">
+            <p>Granulado Mil Cores - R$ 3,49</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Chocolate em Pó Nestlé.jpeg" alt="Chocolate em Pó Nestlé" width="100">
+            <p>Chocolate em Pó Nestlé - R$ 6,99</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Chantilly Amélia.jpeg" alt="Chantilly Amélia" width="100">
+            <p>Chantilly Amélia - R$ 8,49</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+    </section>
+
+    <section id="enlatados" class="produtos">
+        <h2>Enlatados</h2>
+        <div class="produto">
+            <img src="imagens/Milho Verde Bonduelle.jpeg" alt="Milho Verde Bonduelle" width="100">
+            <p>Milho Verde Bonduelle - R$ 3,99</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Ervilha Quero.jpeg" alt="Ervilha Quero" width="100">
+            <p>Ervilha Quero - R$ 2,99</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Atum Gomes da Costa.jpeg" alt="Atum Gomes da Costa" width="100">
+            <p>Atum Gomes da Costa - R$ 8,49</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Sardinha Coqueiro.jpeg" alt="Sardinha Coqueiro" width="100">
+            <p>Sardinha Coqueiro - R$ 5,99</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+    </section>
+
+    <section id="leites" class="produtos">
+        <h2>Leites</h2>
+        <div class="produto">
+            <img src="imagens/Leite Integral Italac.jpeg" alt="Leite Integral Italac" width="100">
+            <p>Leite Integral Italac - R$ 4,49</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Leite Desnatado Parmalat.jpeg" alt="Leite Desnatado Parmalat" width="100">
+            <p>Leite Desnatado Parmalat - R$ 4,99</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Leite em Pó Ninho.jpeg" alt="Leite em Pó Ninho" width="100">
+            <p>Leite em Pó Ninho - R$ 12,99</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Leite Condensado Itambé.jpeg" alt="Leite Condensado Itambé" width="100">
+            <p>Leite Condensado Itambé - R$ 4,99</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+
+        </div>
+    </section>
+
+    <section id="doces" class="produtos">
+        <h2>Doces</h2>
+        <div class="produto">
+            <img src="imagens/Doce de Leite Aviação.jpeg" alt="Doce de Leite Aviação" width="100">
+            <p>Doce de Leite Aviação - R$ 6,49</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Bala de Goma Fini.jpeg" alt="Bala de Goma Fini" width="100">
+            <p>Bala de Goma Fini - R$ 3,49</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Paçoca Amor.jpeg" alt="Paçoca Amor" width="100">
+            <p>Paçoca Amor - R$ 2,99</p>
+            <button class="btn-add-carrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto">
+            <img src="imagens/Maria Mole Docile.jpeg" alt="Maria Mole Docile" width="100">
+            <p>Maria Mole Docile - R$ 4,49</p>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2024 Loja Online</p>
+    </footer>
+</body>
+</html>

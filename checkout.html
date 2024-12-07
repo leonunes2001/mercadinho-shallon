@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Pedido</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Finalizar Pedido</h1>
+
+        <!-- Lista de produtos -->
+        <h2>Produtos no Carrinho:</h2>
+        <ul id="lista-produtos"></ul>
+
+        <!-- Método de pagamento -->
+        <h2>Escolha o método de pagamento:</h2>
+        <form id="form-finalizar">
+            <label>
+                <input type="radio" name="pagamento" value="Pix" required> Pix
+            </label>
+            <label>
+                <input type="radio" name="pagamento" value="Cartão de Crédito" required> Cartão de Crédito
+            </label>
+            <label>
+                <input type="radio" name="pagamento" value="Cartão de Débito" required> Cartão de Débito
+            </label>
+            <label>
+                <input type="radio" name="pagamento" value="Dinheiro" required> Dinheiro
+            </label>
+
+            <!-- Endereço -->
+            <h2>Informações de Entrega:</h2>
+            <label>Nome da Rua: <input type="text" id="rua" required></label>
+            <label>Bairro: <input type="text" id="bairro" required></label>
+            <label>Número da Casa: <input type="text" id="numero" required></label>
+            <label>Número do Celular: <input type="text" id="celular" required></label>
+
+            <button type="submit">Enviar Pedido pelo WhatsApp</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>© 2024 - Sua Loja. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const produtos = urlParams.get("produtos");
+
+            // Exibir os produtos no carrinho
+            const listaProdutos = document.querySelector("#lista-produtos");
+            produtos.split("\n").forEach((produto) => {
+                const li = document.createElement("li");
+                li.textContent = produto;
+                listaProdutos.appendChild(li);
+            });
+
+            // Enviar pedido via WhatsApp
+            document.querySelector("#form-finalizar").addEventListener("submit", (event) => {
+                event.preventDefault();
+
+                const metodoPagamento = document.querySelector("input[name='pagamento']:checked").value;
+                const rua = document.querySelector("#rua").value;
+                const bairro = document.querySelector("#bairro").value;
+                const numero = document.querySelector("#numero").value;
+                const celular = document.querySelector("#celular").value;
+
+                const mensagem = `
+Produtos:
+${produtos}
+
+Método de Pagamento: ${metodoPagamento}
+Endereço:
+Rua: ${rua}
+Bairro: ${bairro}
+Número: ${numero}
+Celular: ${celular}
+                `;
+
+                const whatsappLink = `https://wa.me/5582987181068?text=${encodeURIComponent(mensagem)}`;
+                window.location.href = whatsappLink;
+            });
+        });
+    </script>
+</body>
+</html>
